@@ -16,9 +16,9 @@
 
 load("@com_google_protobuf//bazel/common:proto_info.bzl", "ProtoInfo")
 load(":plugin.bzl", "protoc_plugin_test")
-load(":proto_toolchain.bzl", "PROTO_TOOLCHAIN_TYPE", "proto_toolchains")
+load(":proto_toolchain.bzl", "proto_toolchains")
 
-_PROTO_TOOLCHAIN_TYPE = PROTO_TOOLCHAIN_TYPE
+_PROTO_TOOLCHAIN_TYPE = "@com_google_protobuf//bazel/private:proto_toolchain_type"
 
 _DOC = """
 `buf_lint_test` is a test rule that lints one or more `proto_library` targets.

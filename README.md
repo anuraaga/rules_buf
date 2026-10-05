@@ -1,6 +1,6 @@
 # rules_buf
 
-Bazel rules for [Buf](https://buf.build/). The rules work alongside the `proto_library` rule from [protobuf](https://github.com/protocolbuffers/protobuf/tree/main/bazel), loaded from `@protobuf//bazel:proto_library.bzl` (`@com_google_protobuf//bazel:proto_library.bzl` in `WORKSPACE` projects).
+Bazel rules for [Buf](https://buf.build/). The rules work alongside the `proto_library` rule of [protobuf](https://github.com/protocolbuffers/protobuf).
 
 ## Status
 
@@ -45,10 +45,18 @@ rules_buf_dependencies()
 
 rules_buf_toolchains(version = "v1.68.4")
 
-# Sets up protobuf (fetched by rules_buf_dependencies() as @com_google_protobuf) and its dependencies.
-load("@rules_buf//buf:setup.bzl", "rules_buf_setup")
+# protobuf
+load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
 
-rules_buf_setup()
+protobuf_deps()
+
+load("@rules_java//java:rules_java_deps.bzl", "rules_java_dependencies")
+
+rules_java_dependencies()
+
+load("@rules_python//python:repositories.bzl", "py_repositories")
+
+py_repositories()
 ```
 
 Refer to the latest [release notes](https://github.com/bufbuild/rules_buf/releases) for the exact `sha256` and version to pin.

@@ -98,8 +98,7 @@ func testRunGazelle(t *testing.T, name string, gazelleArgs ...string) {
 		dir, cleanup := testtools.CreateFiles(t, inputs)
 		defer cleanup()
 		args := gazelleArgs
-		// update-repos only edits WORKSPACE or a macro file and rejects
-		// -build_file_name since gazelle v0.48.0.
+		// update-repos does not accept -build_file_name.
 		if len(args) == 0 || args[0] != "update-repos" {
 			args = append(args, "-build_file_name=BUILD")
 		}

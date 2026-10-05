@@ -18,10 +18,6 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:utils.bzl", "maybe")
 
 bazel_dependencies = {
-    # Bazel 8 loads rules_java, rules_python, rules_cc, and bazel_skylib from its
-    # WORKSPACE prefix and suffix, so the pins below must be new enough for it.
-    # protobuf_deps() (see README) only fetches repositories that are not
-    # already defined.
     "bazel_skylib": {
         "sha256": "d00f1389ee20b60018e92644e0948e16e350a7707219e7a390fb0a99b6ec9262",
         "urls": [
