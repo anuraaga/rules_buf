@@ -37,3 +37,8 @@ bzl_library(
         "@bazel_tools//tools/build_defs/repo:utils.bzl",
     ],
 )
+
+bzl_library(
+    name = "setup",
+    srcs = ["setup.bzl"],
+)

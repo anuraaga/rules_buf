@@ -97,7 +97,13 @@ func testRunGazelle(t *testing.T, name string, gazelleArgs ...string) {
 		inputs, goldens := getTestData(t, path.Join("gazelle/buf/testdata", name))
 		dir, cleanup := testtools.CreateFiles(t, inputs)
 		defer cleanup()
-		cmd := exec.Command(gazellePath, append(gazelleArgs, "-build_file_name=BUILD")...)
+		args := gazelleArgs
+		// update-repos only edits WORKSPACE or a macro file and rejects
+		// -build_file_name since gazelle v0.48.0.
+		if len(args) == 0 || args[0] != "update-repos" {
+			args = append(args, "-build_file_name=BUILD")
+		}
+		cmd := exec.Command(gazellePath, args...)
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
 		cmd.Dir = dir
